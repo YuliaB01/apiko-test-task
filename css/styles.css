@@ -1,0 +1,164 @@
+/* general styles */
+* {
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 14px;
+    font-family: sans-serif;
+}
+
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.header-title {
+    font-size: 25px;
+    line-height: 1;
+    padding: 25px 10px;
+    width: 100%;
+    text-align: center;
+}
+
+.wrapper {
+    min-height: 100%;
+    background-color: #fff;
+    overflow: hidden;
+}
+
+.main-content {
+    padding: 20px;
+}
+
+.table {
+    margin-bottom: 15px;
+}
+
+.poster-cell {
+    width: 75px;
+}
+
+.poster-cell div {
+    display: flex;
+}
+
+/*buttons styles */
+/*.btn-group .button {*/
+    /*background-color: #4CAF50;*/
+    /*border: 1px solid #4CAF50;*/
+    /*color: white;*/
+    /*padding: 15px 32px;*/
+    /*text-align: center;*/
+    /*text-decoration: none;*/
+    /*display: inline-block;*/
+    /*font-size: 16px;*/
+    /*cursor: pointer;*/
+    /*float: left;*/
+    /*transition: background-color .2s linear, box-shadow .2s linear;*/
+/*}*/
+
+/*.btn-group .button:first-child {*/
+    /*border-top-left-radius: 5px;*/
+    /*border-bottom-left-radius: 5px;*/
+/*}*/
+
+/*.btn-group .button:last-child {*/
+    /*border-top-right-radius: 4px;*/
+    /*border-bottom-right-radius: 4px;*/
+/*}*/
+
+/*.btn-group .button:not(:last-child) {*/
+    /*border-right: none;*/
+/*}*/
+
+/*.btn-group .button:hover {*/
+    /*background-color: #3e8e41;*/
+/*}*/
+
+/*.btn-group .selected-btn {*/
+    /*background-color: #306f33;*/
+    /*border-color: #306f33;*/
+    /*box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);*/
+/*}*/
+
+/* table styles */
+/*table {*/
+    /*border-collapse: collapse;*/
+    /*width: 100%;*/
+    /*min-height: 50px;*/
+/*}*/
+
+/*table, th, td {*/
+    /*border: 1px solid #ccc;*/
+/*}*/
+
+/*.table-data:first-child {*/
+    /*width: 25%;*/
+/*}*/
+
+/* pagination styles */
+/*.pagination {*/
+    /*display: flex;*/
+    /*align-items: center;*/
+    /*justify-content: space-evenly;*/
+    /*flex-direction: row;*/
+    /*margin-top: 15px;*/
+/*}*/
+
+/*.prev-btn {*/
+    /*order: 1;*/
+/*}*/
+
+/*.next-btn {*/
+    /*order: 3;*/
+/*}*/
+
+/*.pagination-list {*/
+    /*order: 2;*/
+    /*display: flex;*/
+/*}*/
+
+/*.pagination-item {*/
+    /*padding: 8px 16px;*/
+    /*cursor: pointer;*/
+    /*transition: background-color .2s linear, border-radius .2s linear;*/
+    /*border: 1px solid #ccc;*/
+    /*border-radius: 4px;*/
+    /*margin: .25rem;*/
+    /*color: #363636;*/
+    /*font-size: 1em;*/
+/*}*/
+
+/*.pagination-item.active {*/
+    /*background-color: #3273dc;*/
+    /*border-color: #3273dc;*/
+    /*border-radius: 5px;*/
+/*}*/
+
+/*.pagination-item.active a {*/
+    /*color: white;*/
+/*}*/
+
+/*.pagination-item:hover:not(.active) {*/
+    /*background-color: #ddd;*/
+    /*border-radius: 5px;*/
+/*}*/
+
+/*.pagination-link {*/
+    /*color: #363636;*/
+    /*text-decoration: none;*/
+/*}*/
