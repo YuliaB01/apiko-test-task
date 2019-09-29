@@ -1,4 +1,4 @@
-var mainContent = document.getElementById('mainContent');
+var mainContent = document.getElementById('main-content');
 var tableWrapper = document.createElement('div');
 tableWrapper.classList.add('table-wrapper', 'container');
 
@@ -25,7 +25,7 @@ function onError(response) {
 }
 
 function topRatedLoadSuccess(response) {
-    var mainContent = document.getElementById('mainContent');
+    var mainContent = document.getElementById('main-content');
     tableWrapper.innerHTML = '';
     mainContent.innerHTML = '';
 
@@ -36,6 +36,14 @@ function topRatedLoadSuccess(response) {
 }
 
 function topRatedLoadError(response) {
+    console.log(response);
+}
+
+function loadShowDetailsSuccess(response) {
+    console.log(response);
+}
+
+function loadShowDetailsError(response) {
     console.log(response);
 }
 
@@ -125,5 +133,14 @@ function topRatedLoadError(response) {
                 apiClient.loadTopRated(page, topRatedLoadSuccess, topRatedLoadError);
             }
         }
+    });
+
+    document.addEventListener('click', function(event) {
+       var target = event.target;
+
+       if (target.classList.contains('show-name') && target.hasAttribute('data-id')) {
+           var showId = target.dataset.id;
+           apiClient.loadShowDetailsById(showId, loadShowDetailsSuccess, loadShowDetailsError);
+       }
     });
 })();

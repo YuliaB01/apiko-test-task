@@ -37,10 +37,9 @@ var table = {
 
     createData: function (data) {
         var dataCell = document.createElement('td');
-        // var tvShowName = document.createElement('div');
-        // tvShowName.innerT
-        dataCell.innerHTML = '<div class="show-name">'
-            + data.name + '</div><div class="show-rate">Average rate: ' + data.vote_average
+
+        dataCell.innerHTML = '<a class="show-name" data-id=' + data.id + '>'
+            + data.name + '</a><div class="show-rate">Average rate: ' + data.vote_average
             + '</div><div class="show-votes-count">Votes count: '
             + data.vote_count + '</div>';
 
