@@ -1,14 +1,14 @@
 var apiClient = {
-    apiKey: '9b9a6c97be18be80bb60acaad70949ea',
+    apiKey: ' -- PLACE THEMOVIEDB API KEY HERE -- ',
     baseUrl: 'https://api.themoviedb.org/3/tv/',
     genresUrl: 'https://api.themoviedb.org/3/genre/movie/list?language=en-US&api_key=',
 
-    loadPopular: function (onSuccess, onError) {
+    loadPopular: function (page, onSuccess, onError) {
         var data = {};
 
         var xhr = new XMLHttpRequest();
 
-        xhr.open('GET', this.baseUrl + 'popular?api_key=' + this.apiKey, true);
+        xhr.open('GET', this.baseUrl + 'popular?api_key=' + this.apiKey + '&page=' + page, true);
         xhr.addEventListener("readystatechange", function () {
             if (this.readyState === this.DONE) {
                 if (this.status === 200) {
@@ -23,12 +23,12 @@ var apiClient = {
         xhr.send(data);
     },
 
-    loadTopRated: function (onSuccess, onError) {
+    loadTopRated: function (page, onSuccess, onError) {
         var data = {};
 
         var xhr = new XMLHttpRequest();
 
-        xhr.open('GET', this.baseUrl + 'top_rated?api_key=' + this.apiKey, true);
+        xhr.open('GET', this.baseUrl + 'top_rated?api_key=' + this.apiKey + '&page=' + page, true);
         xhr.addEventListener("readystatechange", function () {
             if (this.readyState === this.DONE) {
                 if (this.status === 200) {

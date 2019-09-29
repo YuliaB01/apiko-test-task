@@ -1,59 +1,114 @@
 var pagination = {
-    create: function(currentPage, pagesCount) {
+    currentPage: 1,
+    totalPages: 1,
+    minPagesCount: 1,
+
+    create: function (currentPage, totalPages) {
+        this.currentPage = currentPage;
+        this.totalPages = totalPages;
         var container = document.createElement('div');
         container.classList.add('container');
 
         var pagination = document.createElement('nav');
-        pagination.classList.add('pagination', 'is-centered');
+        pagination.classList.add('pagination-nav');
         pagination.setAttribute('role', 'navigation');
         pagination.id = 'pagination';
 
-        pagination.appendChild(this.createPaginationNavItem('pagination-previous', 'Previous'));
-        pagination.appendChild(this.createPaginationList(currentPage, pagesCount));
-        pagination.appendChild(this.createPaginationNavItem('pagination-next', 'Next'));
+        var buttonsWrapper = document.createElement('div');
+        buttonsWrapper.className = 'nav-btns-wrap';
+        buttonsWrapper.appendChild(this.createPrevNav());
+        buttonsWrapper.appendChild(this.createInput());
+        buttonsWrapper.appendChild(this.createNextNav());
+
+        pagination.appendChild(this.createPagesInfo());
+        pagination.appendChild(buttonsWrapper);
 
         container.appendChild(pagination);
 
         return container;
     },
 
-    createPaginationList: function(currentPage, pagesCount) {
-        var paginationItemsList = document.createElement('ul');
-        paginationItemsList.classList.add('pagination-list');
-        paginationItemsList.id = 'pagination-list';
+    createPagesInfo: function () {
+        var pagesInfo = document.createElement('div');
+        pagesInfo.className = 'pages-count-info';
+        pagesInfo.innerHTML = 'Page <b>' + this.currentPage + '</b><span> of </span><b>' + this.totalPages + '</b>';
 
-        for (var i = 1; i <= pagesCount; i++) {
-            paginationItemsList.appendChild(this.createPaginationItem(i, currentPage));
-        }
-
-        return paginationItemsList;
+        return pagesInfo;
     },
 
-    createPaginationItem: function(item, currentPage) {
-        var paginationItem = document.createElement('li');
-        paginationItem.appendChild(this.createPaginationLink(item, '#', currentPage));
-
-        return paginationItem;
+    updatePagesInfo: function () {
+        var pagesInfo = document.getElementsByClassName('pages-count-info');
+        pagesInfo[0].innerHTML = 'Page <b>' + this.currentPage + '</b><span> of </span><b>' + this.totalPages + '</b>';
     },
 
-    createPaginationLink: function(item, href, currentPage) {
-        var paginationLink = document.createElement('a');
-        paginationLink.classList.add('pagination-link');
-        paginationLink.href = href;
-        paginationLink.innerText = '' + item;
+    createInput: function () {
+        var paginationInput = document.createElement('input');
+        paginationInput.name = 'current-page';
+        paginationInput.type = 'number';
+        paginationInput.min = this.minPagesCount.toString();
+        paginationInput.max = this.totalPages.toString();
+        paginationInput.classList.add('pagination-current');
+        paginationInput.value = this.currentPage.toString();
 
-        if (item === currentPage) {
-            paginationLink.classList.add('is-current');
-        }
-
-        return paginationLink
+        return paginationInput;
     },
 
-    createPaginationNavItem: function(className, innerText) {
+    createNavItem: function (className, innerText) {
         var paginationNav = document.createElement('a');
+        paginationNav.setAttribute('type', 'button');
         paginationNav.classList.add('pagination-item', className);
         paginationNav.innerText = innerText;
 
         return paginationNav;
+    },
+
+    createPrevNav: function () {
+        var prev = this.createNavItem('pagination-previous', 'Previous');
+
+        if (this.currentPage <= this.minPagesCount) {
+            prev.setAttribute('disabled', 'disabled');
+        }
+
+        return prev;
+    },
+
+    createNextNav: function () {
+        var next = this.createNavItem('pagination-next', 'Next');
+
+        if (this.currentPage >= this.totalPages) {
+            next.setAttribute('disabled', true);
+        }
+
+        return next;
+    },
+
+    setCurrentPage: function (currentPage) {
+        var input = document.getElementsByName('current-page');
+        this.currentPage = currentPage;
+
+        if (+currentPage < this.minPagesCount) {
+            this.currentPage = this.minPagesCount;
+        }
+
+        if (+currentPage > this.totalPages) {
+            this.currentPage = this.totalPages;
+        }
+
+        input[0].value = this.currentPage;
+    },
+
+    setPreviousPage: function (page) {
+        if (this.currentPage < this.minPagesCount) {
+            var prev = document.getElementsByClassName('pagination-previous');
+            prev.setAttribute('disabled', true);
+            this.currentPage = this.minPagesCount;
+        }
+
+        if (+currentPage > this.totalPages) {
+            this.currentPage = this.totalPages;
+        }
+
+        input[0].value = this.currentPage;
+        this.updatePagesInfo();
     }
 };
