@@ -1,12 +1,14 @@
-var table = {
+var seasonsTable = {
     create: function (data) {
+        console.log(data);
         var table = document.createElement('table');
-        table.classList.add('table', 'is-hoverable', 'is-bordered', 'is-striped', 'is-narrow', 'is-hoverable', 'is-fullwidth');
+        table.classList.add('table', 'seasons-table', 'is-hoverable', 'is-bordered', 'is-striped', 'is-narrow', 'is-hoverable', 'is-fullwidth');
 
         var tableBody = document.createElement('tbody');
 
-        for (var i = 0; i < data.length; i++) {
-            tableBody.appendChild(this.createRow(data[i]));
+        var seasons = data.seasons;
+        for (var i = 0; i < seasons.length; i++) {
+            tableBody.appendChild(this.createRow(seasons[i], data.id));
         }
 
         table.appendChild(tableBody);
@@ -14,11 +16,11 @@ var table = {
         return table;
     },
 
-    createRow: function (data) {
+    createRow: function (season, tvShowId) {
         var tableRow = document.createElement('tr');
 
-        tableRow.appendChild(this.createPosterCell(data.poster_path));
-        tableRow.appendChild(this.createData(data));
+        tableRow.appendChild(this.createPosterCell(season.poster_path));
+        tableRow.appendChild(this.createData(season, tvShowId));
 
         return tableRow;
     },
@@ -35,13 +37,15 @@ var table = {
         return posterCell;
     },
 
-    createData: function (data) {
+    createData: function (season, tvShowId) {
         var dataCell = document.createElement('td');
+        var hash = router.getHash({
+            showId: tvShowId,
+            seasonNum: season.season_number
+        });
 
-        dataCell.innerHTML = '<a class="show-name" data-id=' + data.id + '>'
-            + data.name + '</a><div class="show-rate">Average rate: ' + data.vote_average
-            + '</div><div class="show-votes-count">Votes count: '
-            + data.vote_count + '</div>';
+        dataCell.innerHTML =
+            '<a class="season-name" href="' + hash + '" data-id=' + tvShowId + ' data-seasonNum='+ season.season_number +'>' + season.name + '</a>';
 
         return dataCell;
     }

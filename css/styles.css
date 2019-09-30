@@ -8,6 +8,10 @@ html {
     font-family: sans-serif;
 }
 
+body {
+    position: relative;
+}
+
 body, html {
     margin: 0;
     padding: 0;
@@ -44,121 +48,153 @@ ul {
     padding: 20px;
 }
 
+/* table styles */
 .table {
     margin-bottom: 15px;
 }
 
 .poster-cell {
     width: 75px;
+    padding: 0.25em 0.25em !important;
 }
 
 .poster-cell div {
     display: flex;
 }
 
-/*buttons styles */
-/*.btn-group .button {*/
-    /*background-color: #4CAF50;*/
-    /*border: 1px solid #4CAF50;*/
-    /*color: white;*/
-    /*padding: 15px 32px;*/
-    /*text-align: center;*/
-    /*text-decoration: none;*/
-    /*display: inline-block;*/
-    /*font-size: 16px;*/
-    /*cursor: pointer;*/
-    /*float: left;*/
-    /*transition: background-color .2s linear, box-shadow .2s linear;*/
-/*}*/
+.show-name {
+    font-size: 18px;
+    font-weight: 500;
+    color: #000;
+    text-decoration: none;
+}
 
-/*.btn-group .button:first-child {*/
-    /*border-top-left-radius: 5px;*/
-    /*border-bottom-left-radius: 5px;*/
-/*}*/
+.show-name:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
 
-/*.btn-group .button:last-child {*/
-    /*border-top-right-radius: 4px;*/
-    /*border-bottom-right-radius: 4px;*/
-/*}*/
-
-/*.btn-group .button:not(:last-child) {*/
-    /*border-right: none;*/
-/*}*/
-
-/*.btn-group .button:hover {*/
-    /*background-color: #3e8e41;*/
-/*}*/
-
-/*.btn-group .selected-btn {*/
-    /*background-color: #306f33;*/
-    /*border-color: #306f33;*/
-    /*box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);*/
-/*}*/
-
-/* table styles */
-/*table {*/
-    /*border-collapse: collapse;*/
-    /*width: 100%;*/
-    /*min-height: 50px;*/
-/*}*/
-
-/*table, th, td {*/
-    /*border: 1px solid #ccc;*/
-/*}*/
-
-/*.table-data:first-child {*/
-    /*width: 25%;*/
-/*}*/
+.show-rate,
+.show-votes-count {
+    font-size: 14px;
+    font-weight: 100;
+}
 
 /* pagination styles */
-/*.pagination {*/
-    /*display: flex;*/
-    /*align-items: center;*/
-    /*justify-content: space-evenly;*/
-    /*flex-direction: row;*/
-    /*margin-top: 15px;*/
-/*}*/
+.pagination-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
 
-/*.prev-btn {*/
-    /*order: 1;*/
-/*}*/
+.pagination-current {
+    border-radius: 4px;
+    border: 1px solid #dbdbdb;
+}
 
-/*.next-btn {*/
-    /*order: 3;*/
-/*}*/
+.nav-btns-wrap {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
 
-/*.pagination-list {*/
-    /*order: 2;*/
-    /*display: flex;*/
-/*}*/
+.nav-btns-wrap .pagination-previous {
+    order: 1;
+}
 
-/*.pagination-item {*/
-    /*padding: 8px 16px;*/
-    /*cursor: pointer;*/
-    /*transition: background-color .2s linear, border-radius .2s linear;*/
-    /*border: 1px solid #ccc;*/
-    /*border-radius: 4px;*/
-    /*margin: .25rem;*/
-    /*color: #363636;*/
-    /*font-size: 1em;*/
-/*}*/
+.nav-btns-wrap .pagination-next {
+    order: 3;
+}
 
-/*.pagination-item.active {*/
-    /*background-color: #3273dc;*/
-    /*border-color: #3273dc;*/
-    /*border-radius: 5px;*/
-/*}*/
+.nav-btns-wrap .pagination-current {
+    order: 2;
+    padding-left: 0.75em;
+    padding-right: 0.75em;
+    height: 2.25em;
+    text-align: center;
+    font-size: 1em;
+    margin: 0.25rem;
+    width: 100px;
+}
 
-/*.pagination-item.active a {*/
-    /*color: white;*/
-/*}*/
+.nav-btns-wrap .pagination-current:focus {
+    outline: none;
+}
 
-/*.pagination-item:hover:not(.active) {*/
-    /*background-color: #ddd;*/
-    /*border-radius: 5px;*/
-/*}*/
+.loader-wrapper {
+    display: none;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    background-color: rgba(255, 255, 255, .9);
+}
 
-/*.pagination-link {*/
-    /*color: #363636;*/
-    /*text-decoration: none;*/
-/*}*/
+/* single show page styles */
+.single-show-content {
+    display: none;
+    flex-direction: column;
+}
+
+.top-container .details {
+    font-weight: 100;
+}
+
+.top-container .details span {
+    font-weight: 400;
+}
+
+.poster-container {
+    margin-right: 20px;
+    padding-left: 10px;
+}
+
+.details-container {
+    padding-right: 10px;
+}
+
+.details-container .single-show-name {
+    font-size: 22px;
+    font-weight: 500;
+    color: #000;
+    text-decoration: none;
+}
+
+.seasons-table .poster-cell {
+    width: 30px;
+}
+
+.episodes-table .poster-cell {
+    width: 55px;
+}
+
+.table-wrapper {
+    padding: 10px;
+}
+
+.image {
+    height: auto;
+    width: 175px;
+}
+
+.season-name,
+.episode-name {
+    font-size: 14px;
+    font-weight: 400;
+    color: #000000bd;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.season-name:hover,
+.episode-name:hover {
+    text-decoration: underline;
+}
+
+.season-content {
+    flex-direction: column;
+}

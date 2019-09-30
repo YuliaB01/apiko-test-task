@@ -7,21 +7,34 @@
     <link rel="stylesheet" type="text/css" href="css/bulma.css">
 </head>
 <body>
+<div id="loader" class="loader-wrapper">
+    <span class="loader"></span> &nbsp; Loading...
+</div>
 <div class="wrapper">
     <header id="header" class="header">
         <div class="header-title">Welcome to TV Shows list</div>
-        <div class="buttons has-addons">
+        <div id="top-buttons" class="buttons has-addons">
             <span id="popular" class="button is-info is-selected">Popular</span>
             <span id="top" class="button">Top Rated</span>
         </div>
     </header>
 
-    <main id="mainContent" class="main-content"></main>
+    <main id="main-content" class="main-content"></main>
+    <main id="single-show-content" class="single-show-content container"></main>
+    <main id="season-content" class="season-content container"></main>
 </div>
 
+<script src="js/common/router.js"></script>
+<script src="js/common/loader.js"></script>
 <script src="js/api-client.js"></script>
-<script src="js/table.js"></script>
-<script src="js/pagination.js"></script>
+<script src="js/home/table.js"></script>
+<script src="js/home/pagination.js"></script>
+<script src="js/single-show/single-show.js"></script>
+<script src="js/single-show/seasons-table.js"></script>
+<script src="js/season/episodes-table.js"></script>
+<script src="js/season/season.js"></script>
+<script src="js/episode/episode.js"></script>
+<script src="js/home/home.js"></script>
 <script src="js/main.js"></script>
 </body>
 </html>
