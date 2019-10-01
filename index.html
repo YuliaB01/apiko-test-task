@@ -19,13 +19,33 @@
         </div>
     </header>
 
+    <nav class="back-btn" id="back-btn">
+        <a href="#" id="back-btn-link" class="back-link">&#x2190; Back</a>
+    </nav>
+
     <main id="main-content" class="main-content"></main>
     <main id="single-show-content" class="single-show-content container"></main>
     <main id="season-content" class="season-content container"></main>
 </div>
 
+<div id="modal" class="modal episode-modal">
+    <div class="modal-background"></div>
+    <div id="modal-content" class="modal-content">
+        <div id="box" class="box"></div>
+    </div>
+    <button id="modal-close-btn" class="modal-close is-large" aria-label="close"></button>
+</div>
+
+<div id="notification" class="notification is-danger">
+    <button id="delete-btn" class="delete"></button>
+    Something went wrong. Please, try again later!
+</div>
+
 <script src="js/common/router.js"></script>
+<script src="js/common/back-button.js"></script>
 <script src="js/common/loader.js"></script>
+<script src="js/common/notification.js"></script>
+<script src="js/common/modal.js"></script>
 <script src="js/api-client.js"></script>
 <script src="js/home/table.js"></script>
 <script src="js/home/pagination.js"></script>

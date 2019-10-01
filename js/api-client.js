@@ -43,24 +43,8 @@ var apiClient = {
     },
 
     loadShowDetailsById: function(tvShowId, onSuccess, onError) {
-        var data = '{}';
-
-        var xhr = new XMLHttpRequest();
-
-        xhr.addEventListener('readystatechange', function () {
-            if (this.readyState === this.DONE) {
-                if (this.status === 200) {
-                    var response = JSON.parse(this.responseText);
-                    onSuccess(response);
-                } else {
-                    onError(this);
-                }
-            }
-        });
-
-        xhr.open('GET', this.baseUrl + tvShowId + '?language=en-US&api_key=' + this.apiKey);
-
-        xhr.send(data);
+        var url = tvShowId + '?language=en-US';
+        this.sendRequest(url, onSuccess, onError);
     },
 
     loadTvSeasonDetailsById: function(params, onSuccess, onError) {

@@ -28,6 +28,12 @@ var home = {
     loadSuccess: function (response) {
         var mainContent = document.getElementById('main-content');
 
+        singleShow.hide();
+        backButton.hide();
+        season.hide();
+
+        home.show();
+
         tableWrapper.innerHTML = '';
         mainContent.innerHTML = '';
 
@@ -41,8 +47,18 @@ var home = {
         loader.hide();
     },
 
-    loadError: function (response) {
-        console.log(response);
+    loadError: function () {
         loader.hide();
+        notification.show();
+    },
+
+    show: function () {
+        document.getElementById('main-content').style.display = 'block';
+        document.getElementById('header').style.display = 'flex';
+    },
+
+    hide: function () {
+        document.getElementById('main-content').style.display = 'none';
+        document.getElementById('header').style.display = 'none';
     }
 };

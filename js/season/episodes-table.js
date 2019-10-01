@@ -1,6 +1,5 @@
 var episodesTable = {
     create: function (data, showId) {
-        console.log(data);
         var table = document.createElement('table');
         table.classList.add('table', 'episodes-table', 'is-hoverable', 'is-bordered', 'is-striped', 'is-narrow', 'is-hoverable', 'is-fullwidth');
 
@@ -38,16 +37,16 @@ var episodesTable = {
     },
 
     createData: function (episode, data, showId) {
+        var link = document.createElement('a');
+        link.className = 'episode-name';
+        link.href = '#';
+        link.innerText = episode.name;
+        link.dataset.showId = showId;
+        link.dataset.seasonNum = data.season_number;
+        link.dataset.episodeNum = episode.episode_number;
+
         var dataCell = document.createElement('td');
-
-        var hash = router.getHash({
-            showId: showId,
-            seasonNum: data.season_number,
-            episodeNum: episode.episode_number
-        });
-
-        dataCell.innerHTML =
-            '<a class="episode-name" href="' + hash + '" data-id=' + showId + ' data-seasonNum='+ data.season_number +' data-episodeNum='+ episode.episode_number +'>' + episode.name + '</a>';
+        dataCell.appendChild(link);
 
         return dataCell;
     }

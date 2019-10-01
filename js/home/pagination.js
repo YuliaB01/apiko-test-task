@@ -95,20 +95,5 @@ var pagination = {
         }
 
         input[0].value = this.currentPage;
-    },
-
-    setPreviousPage: function (page) {
-        if (this.currentPage < this.minPagesCount) {
-            var prev = document.getElementsByClassName('pagination-previous');
-            prev.setAttribute('disabled', true);
-            this.currentPage = this.minPagesCount;
-        }
-
-        if (+currentPage > this.totalPages) {
-            this.currentPage = this.totalPages;
-        }
-
-        input[0].value = this.currentPage;
-        this.updatePagesInfo();
     }
 };

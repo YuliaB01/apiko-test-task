@@ -28,6 +28,7 @@ ul {
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-bottom: 15px;
 }
 
 .header-title {
@@ -42,10 +43,11 @@ ul {
     min-height: 100%;
     background-color: #fff;
     overflow: hidden;
+    padding: 15px;
 }
 
 .main-content {
-    padding: 20px;
+    /*padding: 20px;*/
 }
 
 /* table styles */
@@ -150,7 +152,7 @@ ul {
 
 .poster-container {
     margin-right: 20px;
-    padding-left: 10px;
+    /*padding-left: 10px;*/
 }
 
 .details-container {
@@ -173,7 +175,8 @@ ul {
 }
 
 .table-wrapper {
-    padding: 10px;
+    /*padding: 10px;*/
+    margin-top: 15px!important;
 }
 
 .image {
@@ -197,4 +200,53 @@ ul {
 
 .season-content {
     flex-direction: column;
+}
+
+.episode-modal {
+    display: none;
+}
+
+/* modal styles */
+.modal .modal-head {
+    text-align: center;
+    font-size: 25px;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+.modal .modal-poster {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal .is-bold {
+    font-weight: 800;
+    font-size: 14px;
+}
+
+.modal .box {
+    border-radius: 4px;
+}
+
+.back-btn {
+    padding: 20px 0;
+    display: none;
+}
+
+.back-link {
+    position: relative;
+}
+
+.back-link:hover {
+  text-decoration: underline;
+}
+
+#notification {
+    display: none;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 300px;
+    min-height: 75px;
 }

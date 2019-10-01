@@ -1,37 +1,44 @@
 var episode = {
     create: function (episode) {
-        var modal = document.createElement('div');
-        modal.className = 'modal';
+        var contentWrapper = document.getElementById('box');
 
-        var modalBg = document.createElement('div');
-        modalBg.className = 'modal-background';
+        var modalHead = document.createElement('h2');
+        modalHead.classList.add('modal-head');
+        modalHead.innerText = episode.name;
 
-        var modalCard = document.createElement('div');
-        modalCard.className = 'modal-card';
+        var modalPosterWrap = document.createElement('div');
+        modalPosterWrap.className = 'modal-poster';
 
-        var modalHead = document.createElement('header');
-        modalHead.classList.add('modal-card-head');
+        var poster = document.createElement('img');
+        poster.className = 'poster-img';
+        poster.src = episode.still_path ? 'https://image.tmdb.org/t/p/w400' + episode.still_path : 'images/no-image.png';
 
-        var modalCardBody = document.createElement('section');
-        modalCardBody.classList.add('modal-card-body');
+        var modalBody = document.createElement('div');
+        modalBody.classList.add('modal-body');
+        modalBody.innerHTML =
+            '<div class="season-num"><span class="is-bold">Season: </span><span>' + episode.season_number + '</span></div>'
+            + '<div class="episode-num"><span class="is-bold">Episode: </span><span>' + episode.episode_number + '</span></div>'
+            + '<div class="episode-overview"><span class="is-bold">Episode overview: </span>' + episode.overview + '</div>';
 
-        modalCard.appendChild(modalHead);
-        modalCard.appendChild(modalCardBody);
+        modalPosterWrap.appendChild(poster);
+        contentWrapper.appendChild(modalHead);
+        contentWrapper.appendChild(modalPosterWrap);
+        contentWrapper.appendChild(modalBody);
 
-        modal.appendChild(modalBg);
-        modal.appendChild(modalCard);
-
-        return modal;
+        return contentWrapper;
     },
 
-    episodeDetailsSuccess: function (response) {
-        console.log(response);
+    episodeDetailsSuccess: function (episodeResponse) {
+        episode.create(episodeResponse);
+
+        modal.open('modal');
+
         loader.hide();
     },
 
-    episodeDetailsError: function (response) {
-        console.log(response);
+    episodeDetailsError: function () {
         loader.hide();
+        notification.show();
     },
 
     load: function (params) {

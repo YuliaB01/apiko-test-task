@@ -6,8 +6,6 @@ var timerId = null;
 router.bindEvents();
 router.processHash();
 
-home.loadPopular(1);
-
 (function bindEvents() {
     document.addEventListener('input', function (event) {
         var target = event.target;
@@ -100,34 +98,19 @@ home.loadPopular(1);
         }
     });
 
-    // document.addEventListener('click', function(event) {
-    //     var target = event.target;
-    //
-    //     if (target.classList.contains('show-name') && target.hasAttribute('data-id')) {
-    //         tvShowDetails.load(target.dataset.id);
-    //     }
-    // });
-    //
-    // document.addEventListener('click', function(event) {
-    //     var target = event.target;
-    //
-    //     if (target.classList.contains('season-name') && target.hasAttribute('data-id')) {
-    //         seasonDetails.load({
-    //             showId: target.dataset.id,
-    //             seasonNum: target.dataset.seasonNum
-    //         });
-    //     }
-    // });
-    //
-    // document.addEventListener('click', function(event) {
-    //     var target = event.target;
-    //
-    //     if (target.classList.contains('episode-name') && target.hasAttribute('data-id')) {
-    //         episode.load({
-    //             showId: target.dataset.id,
-    //             seasonNum: target.dataset.seasonNum,
-    //             episodeNum: target.dataset.episodeNum
-    //         });
-    //     }
-    // });
+    document.addEventListener('click', function (event) {
+        if (event.target.classList.contains('episode-name')) {
+            episode.load(event.target.dataset);
+            event.preventDefault();
+        }
+    });
+
+    var closeBtn = document.getElementById('modal-close-btn');
+    closeBtn.addEventListener('click', function () {
+        modal.close('modal');
+    });
+
+    document.getElementById('delete-btn').addEventListener('click', function () {
+        notification.hide();
+    });
 })();

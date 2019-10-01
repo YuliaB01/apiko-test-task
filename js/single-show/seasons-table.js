@@ -1,6 +1,5 @@
 var seasonsTable = {
     create: function (data) {
-        console.log(data);
         var table = document.createElement('table');
         table.classList.add('table', 'seasons-table', 'is-hoverable', 'is-bordered', 'is-striped', 'is-narrow', 'is-hoverable', 'is-fullwidth');
 
@@ -45,7 +44,7 @@ var seasonsTable = {
         });
 
         dataCell.innerHTML =
-            '<a class="season-name" href="' + hash + '" data-id=' + tvShowId + ' data-seasonNum='+ season.season_number +'>' + season.name + '</a>';
+            '<a class="season-name" href="' + hash + '">' + season.name + '</a>';
 
         return dataCell;
     }

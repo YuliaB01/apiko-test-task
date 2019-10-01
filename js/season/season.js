@@ -1,15 +1,19 @@
-var seasonDetails = {
+var season = {
     posterUrl: 'https://image.tmdb.org/t/p/w300',
+    container: document.getElementById('season-content'),
 
     create: function (data, showId) {
         var episodesTableWrap = document.createElement('div');
-        var seasonContainer = document.getElementById('season-content');
 
         episodesTableWrap.classList.add('table-wrapper');
         episodesTableWrap.appendChild(episodesTable.create(data, showId));
 
-        seasonContainer.appendChild(seasonDetails.createTopContainer(data));
-        seasonContainer.appendChild(episodesTableWrap);
+        this.clearContainer();
+
+        this.container.appendChild(season.createTopContainer(data));
+        this.container.appendChild(episodesTableWrap);
+
+        backButton.show(router.generateShowHash(showId));
 
         return episodesTableWrap;
     },
@@ -44,31 +48,35 @@ var seasonDetails = {
         return topContainer;
     },
 
+    clearContainer: function () {
+        this.container.innerHTML = '';
+    },
+
     seasonDetailsSuccess: function (response, showId) {
-        var mainContainer = document.getElementById('main-content');
-        mainContainer.style.display = 'none';
+        home.hide();
+        singleShow.hide();
 
-        var showContainer = document.getElementById('single-show-content');
-        showContainer.style.display = 'none';
-
-        var topButtons = document.getElementById('top-buttons');
-        topButtons.style.display = 'none';
-
-        seasonDetails.create(response, showId);
-
-        var seasonContainer = document.getElementById('season-content');
-        seasonContainer.style.display = 'flex';
+        season.create(response, showId);
+        season.show();
 
         loader.hide();
     },
 
-    seasonDetailsError: function (response) {
-        console.log(response);
+    seasonDetailsError: function () {
+        notification.show();
     },
 
     load: function (params) {
         loader.show();
 
         apiClient.loadTvSeasonDetailsById(params, this.seasonDetailsSuccess, this.seasonDetailsError);
+    },
+
+    show: function () {
+        this.container.style.display = 'flex';
+    },
+
+    hide: function () {
+        this.container.style.display = 'none';
     }
 };

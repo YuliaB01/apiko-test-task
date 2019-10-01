@@ -1,4 +1,4 @@
-var tvShowDetails = {
+var singleShow = {
     showContainer: document.getElementById('single-show-content'),
     posterUrl: 'https://image.tmdb.org/t/p/w300',
 
@@ -8,8 +8,12 @@ var tvShowDetails = {
         seasonsTableWrap.classList.add('table-wrapper');
         seasonsTableWrap.appendChild(seasonsTable.create(data));
 
+        this.clearContainer();
+
         this.showContainer.appendChild(this.createTopContainer(data));
         this.showContainer.appendChild(seasonsTableWrap);
+
+        backButton.show(router.generateDefaultHash());
 
         return seasonsTableWrap;
     },
@@ -45,29 +49,36 @@ var tvShowDetails = {
         return topContainer;
     },
 
+    clearContainer: function () {
+        this.showContainer.innerHTML = '';
+    },
+
     loadShowDetailsSuccess: function (response) {
-        var mainContainer = document.getElementById('main-content');
-        mainContainer.style.display = 'none';
+        season.hide();
+        home.hide();
 
-        var topButtons = document.getElementById('top-buttons');
-        topButtons.style.display = 'none';
-
-        tvShowDetails.create(response);
-
-        var showContainer = document.getElementById('single-show-content');
-        showContainer.style.display = 'flex';
+        singleShow.create(response);
+        singleShow.show();
 
         loader.hide();
     },
 
-    loadShowDetailsError: function (response) {
+    loadShowDetailsError: function () {
         loader.hide();
-        console.log(response);
+        notification.show();
     },
 
     load: function (params) {
         loader.show();
 
         apiClient.loadShowDetailsById(params, this.loadShowDetailsSuccess, this.loadShowDetailsError);
+    },
+
+    hide: function () {
+        this.showContainer.style.display = 'none';
+    },
+
+    show: function () {
+        this.showContainer.style.display = 'flex';
     }
 };

@@ -44,7 +44,7 @@ var table = {
         });
 
         dataCell.innerHTML =
-            '<a class="show-name" href="' + link + '" data-id=' + data.id + '>' + data.name + '</a>' +
+            '<a class="show-name" href="' + link + '">' + data.name + '</a>' +
             '<div class="show-rate">Average rate: ' + data.vote_average + '</div>' +
             '<div class="show-votes-count">Votes count: ' + data.vote_count + '</div>';
 

@@ -11,16 +11,14 @@ var router = {
         var hashObject = {};
 
         for (var i = 0; i < arrayOfStrings.length; i++) {
-            if (arrayOfStrings[i].startsWith('show')) {
-                hashObject.showId = arrayOfStrings[i].substr(arrayOfStrings[i].indexOf('=') + 1);
+            var arr = arrayOfStrings[i].split('=');
+
+            if (arr[0] === 'show') {
+                hashObject.showId = +arr[1];
             }
 
-            if (arrayOfStrings[i].startsWith('season')) {
-                hashObject.seasonNum = arrayOfStrings[i].substr(arrayOfStrings[i].indexOf('=') + 1);
-            }
-
-            if (arrayOfStrings[i].startsWith('episode')) {
-                hashObject.episodeNum = arrayOfStrings[i].substr(arrayOfStrings[i].indexOf('=') + 1);
+            if (arr[0] === 'season') {
+                hashObject.seasonNum = +arr[1];
             }
         }
 
@@ -29,21 +27,33 @@ var router = {
 
     load: function (hashObject) {
         if (hashObject.hasOwnProperty('showId') && hashObject.hasOwnProperty('seasonNum')) {
-            seasonDetails.load({showId: hashObject.showId, seasonNum: hashObject.seasonNum});
+            season.load(hashObject);
         } else if (hashObject.hasOwnProperty('showId')) {
-            tvShowDetails.load(hashObject.showId);
+            singleShow.load(hashObject.showId);
+        } else {
+            home.load(1);
         }
     },
 
     getHash: function (data) {
-        if (data.hasOwnProperty('showId') && data.hasOwnProperty('seasonNum') && data.hasOwnProperty('episodeNum')) {
-           return '#/show=' + data.showId + '/season=' + data.seasonNum + '/episode=' + data.episodeNum;
-        } else if (data.hasOwnProperty('showId') && data.hasOwnProperty('seasonNum')) {
-            return '#/show=' + data.showId + '/season=' + data.seasonNum;
+        if (data.hasOwnProperty('showId') && data.hasOwnProperty('seasonNum')) {
+            return this.generateSeasonHash(data.showId, data.seasonNum);
         } else if (data.hasOwnProperty('showId')) {
-            return '#/show=' + data.showId;
+            return this.generateShowHash(data.showId);
         }
 
+        return this.generateDefaultHash();
+    },
+
+    generateShowHash: function (showId) {
+        return '#/show=' + showId;
+    },
+
+    generateSeasonHash: function (showId, seasonNum) {
+        return '#/show=' + showId + '/season=' + seasonNum;
+    },
+
+    generateDefaultHash: function () {
         return '#';
     }
 };
